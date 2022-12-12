@@ -1,9 +1,5 @@
 <template>
-  <div>
-    <select v-model="mode">
-      <option value="front">Front</option>
-      <option value="back">Back</option>
-    </select>
+  <div @click.prevent="switchMode">
     <canvas id="canvas"></canvas>
   </div>
 </template>
@@ -25,9 +21,13 @@ watch(mode, () => (camera.mode = mode.value));
 
 onMounted(() => {
   camera = new Instacam(document.querySelector('#canvas'), {
-    mode: 'back',
+    mode: mode.value,
     invert: 1,
   });
   camera.invert = 1;
 });
+
+function switchMode() {
+  mode.value = mode.value === 'back' ? 'front' : 'back';
+}
 </script>
