@@ -13,7 +13,10 @@ import Instacam from 'instacam';
 import { onMounted } from 'vue';
 
 onMounted(() => {
-  let camera = new Instacam(document.querySelector('#canvas'));
+  let camera = new Instacam(document.querySelector('#canvas'), {
+    mode: 'back',
+    invert: 1,
+  });
   camera.invert = 1;
 });
 </script>
